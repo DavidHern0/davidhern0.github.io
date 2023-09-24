@@ -4,7 +4,8 @@ const parallaxLayer = document.getElementById('parallax-layer');
 const projectsLeft = document.querySelectorAll('.projectLeft');
 const projectsRight = document.querySelectorAll('.projectRight');
 const projects_container = document.querySelectorAll('.project_container');
-const divs_to_animate = document.querySelectorAll(".div_to_animate");
+const animates_to_fadein = document.querySelectorAll(".animate_to_fadein");
+const animates_to_slide_up = document.querySelectorAll(".animate_to_slide_up");
 
 // Flashlight Handling
 function handleFlashlightMovement(e) {
@@ -33,8 +34,12 @@ function applyAnimationsOnScroll() {
         parallaxLayer.style.transform = `translateY(-${scrollY * 0.25}px)`;
     }
 
-    divs_to_animate.forEach(div_to_animate => {
-        applyAnimation('fade-in', (top, windowHeight) => top < windowHeight, [div_to_animate]);
+    animates_to_slide_up.forEach(animate_to_slide_up => {
+        applyAnimation('slide-up', (top, windowHeight) => top < windowHeight, [animate_to_slide_up]);
+    });
+
+    animates_to_fadein.forEach(animate_to_fadein => {
+        applyAnimation('fade-in', (top, windowHeight) => top < windowHeight, [animate_to_fadein]);
     });
 
     if (window.innerWidth >= 768) {
@@ -72,10 +77,9 @@ window.addEventListener('scroll', applyAnimationsOnScroll);
 window.addEventListener('load', applyAnimationsOnScroll);
 
 
-    const hellothere = document.getElementById("hellothere");
-    let audio = new Audio('src/obi-wan-hello-there.mp3');
-audio.volume = 0.15;
-    hellothere.addEventListener("click", function() {
-      audio.play();
-    });
-  
+const hello_there = document.getElementById("hello_there");
+let audio = new Audio('src/obi-wan-hello-there.mp3');
+audio.volume = 0.05;
+hello_there.addEventListener("click", function () {
+    audio.play();
+});
